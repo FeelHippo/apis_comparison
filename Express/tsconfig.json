@@ -1,0 +1,33 @@
+{
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": ["es2018"],
+    "outDir": "build",
+    "allowJs": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": "./src",
+    "paths": {
+      "api-clients/*": ["api-clients/*"],
+      "config/*": ["config/*"],
+      "middlewares/*": ["middlewares/*"],
+      "modules/*": ["modules/*"],
+      "routes/*": ["routes/*"],
+      "storage/*": ["storage/*"],
+      "utils/*": ["utils/*"]
+    }
+  },
+  "include": ["./**/*.ts", "src/api-clients/spw-swisscom-service"],
+  "exclude": ["node_modules/**/*", "build/**/*", "_warmup/**/*", ".vscode/**/*"]
+}

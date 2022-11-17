@@ -1,0 +1,14 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Cheatsheet
+  description: Cheatsheet
+  termsOfService: http://swagger.io/terms/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: /health-check
+paths:
+  /ping:
+    $ref: './health-check/ping/path.yaml'
