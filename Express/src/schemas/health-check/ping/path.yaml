@@ -1,0 +1,16 @@
+get:
+  description: Get health status
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+    '422':
+      description: Validation error
+    '401':
+      description: The token fails verification

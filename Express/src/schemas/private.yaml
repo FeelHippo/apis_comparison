@@ -1,0 +1,28 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Cheatsheet
+  description: Cheatsheet
+  termsOfService: http://swagger.io/terms/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: /api/v1
+paths:
+  /cheatsheet/get-bullshit:
+    $ref: './cheatsheet/get-bullshit/path.yaml'
+  /cheatsheet/post-bullshit:
+    $ref: './cheatsheet/post-bullshit/path.yaml'
+  /cheatsheet/post-bullcrap:
+    $ref: './cheatsheet/post-bullcrap/path.yaml'
+  /cheatsheet/patch-bullcrap:
+    $ref: './cheatsheet/patch-bullcrap/path.yaml'
+  /cheatsheet/delete-bullcrap:
+    $ref: './cheatsheet/delete-bullcrap/path.yaml'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-key
