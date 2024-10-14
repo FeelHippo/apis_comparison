@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="apache-jmeter-5.4.3">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/apache-jmeter-5.4.3.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

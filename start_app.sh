@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JMETER_PATH="./apache-jmeter-5.4.3/apache-jmeter-5.4.3/bin"
+JMETER_PATH="/opt/homebrew/bin"
 
 echo "Installing required dependencies..."
 npm i -g pm2
@@ -12,8 +12,9 @@ pm2 --name Node start ./NodeJs/index.js -- start &
 pm2 --name Express start ./Express -- start &
 pm2 --name Fastify start ./Fastify -- start &
 pm2 --name Golang start ./Golang/main.exe &
+pm2 --name Dart start ./DartFrog -- dart_frog dev --port 8090 &
 pm2 list
 echo "Generate report, once server has started..."
-cd .. & $JMETER_PATH/jmeter -n -t $JMETER_PATH/ThreadGroup.jmx ;
+open $JMETER_PATH/jmeter -n -t ApiGroup.jmx ;
 echo "End of script: kill-port"
 pm2 stop all
