@@ -7,6 +7,7 @@ EXPOSE 3000
 
 COPY --chown=node:node package-lock.json package-lock.json
 COPY --chown=node:node package.json package.json
+
 RUN npm ci
 
 COPY --chown=node:node . .

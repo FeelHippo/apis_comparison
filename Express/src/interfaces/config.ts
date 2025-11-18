@@ -1,11 +1,12 @@
 import { Environment } from 'interfaces/global';
+import { HeadersDefaults } from 'axios';
 export interface BaseApiConfig {
   timeout: number;
   base_url: string;
   headers: (environment: Environment) => ApiHeaders;
   data?: any;
 }
-export interface ApiHeaders {
+export interface ApiHeaders extends Partial<HeadersDefaults> {
   'api-key'?: string;
   ENVIRONMENT?: Environment;
   authorization?: string;

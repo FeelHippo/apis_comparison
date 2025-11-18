@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import * as moduleAlias from 'module-alias';
+import moduleAlias from 'module-alias';
 moduleAlias.addAliases({
   'api-clients': __dirname + '/api-clients',
   config: __dirname + '/config',
@@ -19,8 +19,7 @@ const port = process.env.PORT || 3002;
 createServer()
   .then(async (app: Express) => {
     await connectDB();
-    const server = app.listen(port);
-    server.keepAliveTimeout = 70000;
+    app.listen(port);
     console.log(`[API] Api is running on port ${port}`);
     console.log(`[API] Swagger UI available with path: /api-docs`);
   })

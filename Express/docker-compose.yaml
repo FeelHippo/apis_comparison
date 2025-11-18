@@ -1,0 +1,22 @@
+services:
+  express:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: express
+    container_name: express
+    restart: unless-stopped
+    env_file: ".env"
+    ports:
+      - "80:3000"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 127.0.0.1:27017:27017
+volumes:
+  data-volume: # in this volume all the data will be saved when you stop/ delete the MongoDB container
