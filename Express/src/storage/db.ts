@@ -1,7 +1,7 @@
 import config from 'config';
 import { log, log_levels, log_labels } from 'utils/logger';
 import * as mongoose from 'mongoose';
-import { createBullshitModel } from './bullshit/bullshit.model';
+import { createBullshitModel } from 'storage/fun-fact/fun-fact.model';
 
 let db_connection: typeof mongoose | undefined;
 

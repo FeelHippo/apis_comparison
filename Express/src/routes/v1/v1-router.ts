@@ -3,10 +3,10 @@ import { Router } from 'express';
 import Authorizer from 'middlewares/authorizer';
 import EnvironmentCheck from 'middlewares/environment-check';
 
-import bullshit from './cheatsheet';
+import fun from './fun';
 
 const v1 = Router();
 
-v1.use('/cheatsheet', [Authorizer, EnvironmentCheck], bullshit);
+v1.use('/fun', [Authorizer, EnvironmentCheck], fun);
 
 export default v1;

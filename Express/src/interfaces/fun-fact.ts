@@ -1,6 +1,15 @@
 export interface FunFact {
-  icon_url: string;
-  id: string;
+  iconUrl: string;
+  factId: string;
   url: string;
   value: string;
+}
+
+export interface PatchFunFactOperation {
+  op: keyof FunFact;
+  value: string;
+}
+
+export interface PatchFunFactRequest {
+  operations: PatchFunFactOperation[];
 }

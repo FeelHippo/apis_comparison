@@ -16,7 +16,7 @@ export class FunFactsApi {
     this.funFactsBaseApiClient = new BaseApiClient(api_config, environment);
   }
 
-  async getFunFacts(): Promise<FunFact> {
+  async getFunFact(): Promise<FunFact> {
     const response = await this.funFactsBaseApiClient.getRequest('/', null, [200]);
     const { value, error }: ValidationResult<FunFact> = fun_facts_schema.validate(response);
     if (error) {

@@ -51,7 +51,8 @@ export const log_labels = {
     connect_success: 'DB_CONNECT',
     connect_error: 'DB_CONNECT_ERROR',
     format_error: 'FORMAT_ERROR',
-    update_bullshit: 'UPDATE_BULLSHIT',
-    delete_bullshit: 'DELETE_BULLSHIT',
+    upsert_fun_fact: 'UPSERT_FUN_FACT',
+    update_fun_fact: 'UPDATE_FUN_FACT',
+    delete_fun_fact: 'DELETE_FUN_FACT',
   },
 };
