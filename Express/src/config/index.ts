@@ -16,9 +16,9 @@ const config: Config = {
   authorization: {
     api_key: getEnvironmentVariable('API_KEY'),
   },
-  bullshit_api: {
+  fun_facts_api: {
     timeout: 4000,
-    base_url: 'https://corporatebs-generator.sameerkumar.website/',
+    base_url: 'https://api.chucknorris.io/jokes/random/',
     headers: (): ApiHeaders => {
       return {
         'Content-Type': 'application/json',

@@ -24,5 +24,5 @@ export interface AuthorizationConfig {
 export interface Config {
   mongodb: MongoConfig;
   authorization: AuthorizationConfig;
-  bullshit_api: BaseApiConfig;
+  fun_facts_api: BaseApiConfig;
 }
