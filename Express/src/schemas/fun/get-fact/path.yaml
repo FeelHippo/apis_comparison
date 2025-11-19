@@ -1,27 +1,28 @@
-patch:
-  summary: Cheatsheet
-  requestBody:
-    description: Cheatsheet
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            phrase:
-              type: string
-          required:
-            - phrase
+get:
+  summary: Get Fun Fact
   parameters:
     - in: header
       name: ENVIRONMENT
       schema:
         type: string
-        enum: [PRODUCTION, DEVELOPMENT]
+        enum: [ PRODUCTION, DEVELOPMENT ]
         default: PRODUCTION
   responses:
-    '201':
-      description: The status of the request
+    '200':
+      description: Data returned
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              iconUrl:
+                type: string
+              factId:
+                type: string
+              url:
+                type: string
+              value:
+                type: string
     '422':
       description: Validation error
     '401':
@@ -32,10 +33,6 @@ patch:
         application/json:
           schema:
             type: object
-    '415':
-      description: Unsupported Media Type
-    '429':
-      description: Too many requests
     '400':
       description: Bad request
       content:

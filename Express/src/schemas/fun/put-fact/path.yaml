@@ -1,7 +1,7 @@
-post:
-  summary: Cheatsheet
+put:
+  summary: Put Fun Fact
   requestBody:
-    description: Cheatsheet
+    description: Put Fun Fact
     required: true
     content:
       application/json:
@@ -19,9 +19,16 @@ post:
         type: string
         enum: [PRODUCTION, DEVELOPMENT]
         default: PRODUCTION
+    - in: path
+      name: id
+      schema:
+        type: string
+      description: the unique id of the fact
   responses:
     '201':
-      description: The status of the request
+      description: New resource create
+    '204':
+      description: Resource updated
     '422':
       description: Validation error
     '401':

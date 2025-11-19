@@ -2,9 +2,9 @@ import * as mongoose from 'mongoose';
 import { Environment } from 'interfaces/global';
 import { FunFact } from 'interfaces/fun-fact';
 
-export interface FunFactDocument extends FunFact, mongoose.Document {}
+export interface FunFactDocument extends FunFact, mongoose.Document, mongoose.SchemaTimestampsConfig {}
 
-let funFactModel: mongoose.Model<FunFactDocument, {}, {}>;
+export let funFactModel: mongoose.Model<FunFactDocument, {}, {}>;
 
 export const createFunFactModel = async (): Promise<void> => {
   const FunFactSchema = new mongoose.Schema(
@@ -42,5 +42,3 @@ export const createFunFactModel = async (): Promise<void> => {
   funFactModel = mongoose.model<FunFactDocument>('express', FunFactSchema);
   await funFactModel.ensureIndexes();
 };
-
-export { funFactModel };

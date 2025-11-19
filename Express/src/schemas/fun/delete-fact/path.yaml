@@ -1,22 +1,20 @@
-get:
-  summary: Get Something
+delete:
+  summary: Delete Fun Fact
   parameters:
     - in: header
       name: ENVIRONMENT
       schema:
         type: string
-        enum: [ PRODUCTION, DEVELOPMENT ]
+        enum: [PRODUCTION, DEVELOPMENT]
         default: PRODUCTION
+    - in: path
+      name: id
+      schema:
+        type: string
+      description: the unique id of the fact
   responses:
     '200':
-      description: Data returned
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              phrase:
-                type: string
+      description: The status of the request
     '422':
       description: Validation error
     '401':
@@ -27,6 +25,10 @@ get:
         application/json:
           schema:
             type: object
+    '415':
+      description: Unsupported Media Type
+    '429':
+      description: Too many requests
     '400':
       description: Bad request
       content:

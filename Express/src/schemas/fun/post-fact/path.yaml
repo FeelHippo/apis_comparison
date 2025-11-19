@@ -1,17 +1,23 @@
-delete:
-  summary: Cheatsheet
+post:
+  summary: Post Fun Fact
   requestBody:
-    description: Cheatsheet
+    description: Post Fun Fact
     required: true
     content:
       application/json:
         schema:
           type: object
           properties:
-            phrase:
+            iconUrl:
+              type: string
+            factId:
+              type: string
+            url:
+              type: string
+            value:
               type: string
           required:
-            - phrase
+            - value
   parameters:
     - in: header
       name: ENVIRONMENT
@@ -20,8 +26,8 @@ delete:
         enum: [PRODUCTION, DEVELOPMENT]
         default: PRODUCTION
   responses:
-    '201':
-      description: The status of the request
+    '204':
+      description: Resource was created but cannot be identified by a URI
     '422':
       description: Validation error
     '401':

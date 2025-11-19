@@ -3,6 +3,7 @@ import { log, log_labels, log_levels } from 'utils/logger';
 import { FunFact, PatchFunFactRequest } from 'interfaces/fun-fact';
 import { Environment } from 'interfaces/global';
 import { DBException } from 'utils/error-handler';
+import * as HttpStatus from 'http-status-codes';
 
 export class FunFactDB {
   static async upsertFunFact(environment: Environment, id: string, { iconUrl, factId, url, value }: FunFact) {
@@ -10,24 +11,31 @@ export class FunFactDB {
       name: 'updateFunFact',
       factId,
     });
+    // https://www.codemzy.com/blog/mongodb-findoneandupdate-with-upsert
 
-    const dbFunFact = await funFactModel.findOneAndUpdate(
+    let timestamp = new Date().toISOString();
+    const document = await funFactModel.findOneAndUpdate(
       {
         factId: id,
       },
       {
         $set: { iconUrl, factId, url, value, environment },
+        $setOnInsert: { createdAt: timestamp },
       },
       {
         upsert: true,
+        returnDocument: 'after',
       },
     );
 
-    if (!dbFunFact) {
+    if (!document) {
       throw new DBException();
     }
 
-    return dbFunFact;
+    return {
+      document,
+      statusCode: document.createdAt == timestamp ? HttpStatus.StatusCodes.CREATED : HttpStatus.StatusCodes.NO_CONTENT,
+    };
   }
   static async updateFunFact(
     environment: Environment,

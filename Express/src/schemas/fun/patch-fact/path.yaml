@@ -1,17 +1,32 @@
-post:
-  summary: Cheatsheet
+patch:
+  summary: Patch Fun Fact
   requestBody:
-    description: Cheatsheet
+    description: Patch Fun Fact
     required: true
     content:
       application/json:
         schema:
           type: object
           properties:
-            phrase:
-              type: string
+            operations:
+              type: array
+              items:
+                type: object
+                properties:
+                  op:
+                    type: string
+                    enum:
+                      - iconUrl
+                      - factId
+                      - url
+                      - value
+                  value:
+                    type: string
+                required:
+                  - op
+                  - value
           required:
-            - phrase
+            - operations
   parameters:
     - in: header
       name: ENVIRONMENT
@@ -19,6 +34,11 @@ post:
         type: string
         enum: [PRODUCTION, DEVELOPMENT]
         default: PRODUCTION
+    - in: path
+      name: id
+      schema:
+        type: string
+      description: the unique id of the fact
   responses:
     '201':
       description: The status of the request
