@@ -9,4 +9,5 @@ export const fun_facts_schema = joi
   })
   .rename('icon_url', 'iconUrl')
   .rename('id', 'factId')
+  .options({ stripUnknown: true })
   .required();

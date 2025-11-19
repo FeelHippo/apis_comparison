@@ -8,10 +8,16 @@ put:
         schema:
           type: object
           properties:
-            phrase:
+            iconUrl:
+              type: string
+            factId:
+              type: string
+            url:
+              type: string
+            value:
               type: string
           required:
-            - phrase
+            - value
   parameters:
     - in: header
       name: ENVIRONMENT
@@ -24,6 +30,7 @@ put:
       schema:
         type: string
       description: the unique id of the fact
+      required: true
   responses:
     '201':
       description: New resource create

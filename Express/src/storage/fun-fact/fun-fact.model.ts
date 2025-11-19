@@ -30,9 +30,9 @@ export const createFunFactModel = async (): Promise<void> => {
         enum: Object.values(Environment),
         default: Environment.PRODUCTION,
       },
+      createdAt: { type: Date },
     },
     {
-      timestamps: true,
       collection: 'express',
     },
   );

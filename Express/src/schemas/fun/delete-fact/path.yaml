@@ -12,6 +12,7 @@ delete:
       schema:
         type: string
       description: the unique id of the fact
+      required: true
   responses:
     '200':
       description: The status of the request

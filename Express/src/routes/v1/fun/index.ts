@@ -7,10 +7,10 @@ import { deleteFact } from './delete-fact';
 
 const v1 = Router();
 
-v1.get('/fact', getFact);
-v1.post('/fact', postFact);
-v1.put('/fact/:id', putFact);
-v1.patch('/fact/:id', patchFact);
-v1.delete('/fact/:id', deleteFact);
+v1.get('/get-fact', getFact);
+v1.post('/post-fact', postFact);
+v1.put('/put-fact/:id', putFact);
+v1.patch('/patch-fact/:id', patchFact);
+v1.delete('/delete-fact/:id', deleteFact);
 
 export default v1;

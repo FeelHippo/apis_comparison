@@ -32,10 +32,9 @@ export class FunFactDB {
       throw new DBException();
     }
 
-    return {
-      document,
-      statusCode: document.createdAt == timestamp ? HttpStatus.StatusCodes.CREATED : HttpStatus.StatusCodes.NO_CONTENT,
-    };
+    const isNewResource = new Date(document.createdAt as string).toISOString() == timestamp;
+
+    return isNewResource ? HttpStatus.StatusCodes.CREATED : HttpStatus.StatusCodes.NO_CONTENT;
   }
   static async updateFunFact(
     environment: Environment,
@@ -60,7 +59,6 @@ export class FunFactDB {
           useFindAndModify: true,
         },
       );
-
     }
 
     const dbFunFact = await funFactModel.findOne({

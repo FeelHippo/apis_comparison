@@ -1,0 +1,2 @@
+url,value,iconUrl,factId,environment
+https://api.chucknorris.io/jokes/l14K4VjUS5qmRlU87vQj9g,Chuck Norris gets more ass than a toilet seat.,https://api.chucknorris.io/img/avatar/chuck-norris.png,l14K4VjUS5qmRlU87vQj9g,DEVELOPMENT

@@ -8,8 +8,8 @@ export const putFact = async (req: Request, res: Response): Promise<void> => {
     const { ENVIRONMENT: environment } = res.locals;
     const { id } = req.params;
     const data = req.body as FunFact;
-    const { document, statusCode } = await FunFactDB.upsertFunFact(environment, id, data);
-    res.status(statusCode).send(document);
+    const statusCode = await FunFactDB.upsertFunFact(environment, id, data);
+    res.status(statusCode).send();
   } catch (error: any) {
     errorHandler(res, error, 'putFact');
   }

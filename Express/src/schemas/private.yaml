@@ -14,11 +14,11 @@ paths:
     $ref: './fun/get-fact/path.yaml'
   /fun/post-fact:
     $ref: './fun/post-fact/path.yaml'
-  /fun/put-fact:
+  /fun/put-fact/{id}:
     $ref: './fun/put-fact/path.yaml'
-  /fun/patch-fact:
+  /fun/patch-fact/{id}:
     $ref: './fun/patch-fact/path.yaml'
-  /fun/delete-fact:
+  /fun/delete-fact/{id}:
     $ref: './fun/delete-fact/path.yaml'
 components:
   securitySchemes:
