@@ -34,4 +34,28 @@ curl --location 'http://localhost:8000/fun-fact/' \
     "updated_at": "2020-01-05 13:42:25.905626",
     "value": "Chuck Norris can piss into gale force winds."
 }
+
+curl --location 'http://localhost:8000/fun-fact/' \
+--header 'x-token: fake-super-secret-token' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "abc123",
+    "value": "Chuck Norris",
+    "categories": ["list"],
+    "created_at": "str",
+    "updated_at": "str",
+    "icon_url": "str"
+}'
+
+201 CREATED
+{
+    "categories": [
+        "list"
+    ],
+    "created_at": "str",
+    "id": "abc123",
+    "value": "Chuck Norris",
+    "icon_url": "str",
+    "updated_at": "str"
+}
 ```
