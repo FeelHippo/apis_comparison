@@ -14,7 +14,7 @@
         - when done: `deactivate`
 - Commands:
     - [generate venv in Garuda](https://stackoverflow.com/a/79304690/10708345)
-    - run app: `source .venv/bin/activate` -> `fastapi dev main.py`
+    - run app: `source .venv/bin/activate` -> `fastapi dev app/main.py`
     - stop app: `deactivate`
 - Architecture:
     - [reference](https://fastapi.tiangolo.com/tutorial/bigger-applications/)
@@ -27,20 +27,17 @@ curl --location 'http://localhost:8000/fun-fact/' \
 
 200OK
 {
-    "id": "K0q21jWJRdWkAJKh32Ur4g",
+    "value": "Chuck Norris sleeps with a pillow under his gun.",
     "categories": [],
     "icon_url": "https://api.chucknorris.io/img/avatar/chuck-norris.png",
-    "created_at": "2020-01-05 13:42:25.905626",
-    "updated_at": "2020-01-05 13:42:25.905626",
-    "value": "Chuck Norris can piss into gale force winds."
+    "id": "qqthrspvtqyigfwvaui2eq"
 }
 
 curl --location 'http://localhost:8000/fun-fact/' \
 --header 'x-token: fake-super-secret-token' \
 --header 'Content-Type: application/json' \
 --data '{
-    "id": "abc123",
-    "value": "Chuck Norris",
+    "value": "Chuck Norris Time Stamps",
     "categories": ["list"],
     "created_at": "str",
     "updated_at": "str",
@@ -49,13 +46,11 @@ curl --location 'http://localhost:8000/fun-fact/' \
 
 201 CREATED
 {
+    "value": "Chuck Norris Time Stamps",
     "categories": [
         "list"
     ],
-    "created_at": "str",
-    "id": "abc123",
-    "value": "Chuck Norris",
     "icon_url": "str",
-    "updated_at": "str"
+    "id": "55c35ad9-fbf4-4a7f-ae07-9a04eb4380c6"
 }
 ```
