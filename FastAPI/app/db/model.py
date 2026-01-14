@@ -8,7 +8,7 @@ from uuid import uuid4
 class FunFactBase(SQLModel):
     value: str = Field(index=True)
     categories: list[str] = Field(sa_column=Column(JSON))
-    icon_url: str
+    icon_url: str | None = Field(default=None)
 
 class FunFact(FunFactBase, table=True):
     id: str | None = Field(default=str(uuid4()), primary_key=True)

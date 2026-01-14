@@ -3,10 +3,19 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
 from pydantic import BaseModel
+from typing import Optional
 from sqlmodel import select
 
 from app.dependencies import SessionDep, get_token_header
 from app.db.model import FunFact, FunFactPublic, FunFactCreate, FunFactUpdate
+
+class Operation(BaseModel):
+    op: str # only "delete" and "update" allowed for now
+    path: str # property name, e.g. "value", "categories", etc
+    value: Optional[str | list[str]] = None # new value
+
+class Operations(BaseModel):
+    operations: list[Operation]
 
 router = APIRouter(
     prefix="/fun-fact",
@@ -59,3 +68,29 @@ async def upsert_fun_fact(id: str, fun_fact: FunFactUpdate, session: SessionDep)
         session.refresh(row)
         json_compatible_item_data = jsonable_encoder(row)
         return JSONResponse(status_code=status.HTTP_200_OK, content=json_compatible_item_data)
+
+@router.patch('/{id}', status_code= 200, response_model=FunFactPublic)
+async def partially_modify_fun_fact(id: str, body: Operations, session: SessionDep):
+    operations = body.operations
+    row = session.get(FunFact, id)
+    if not row:
+        raise HTTPException(status_code=404, detail="Fun Fact Not Found on DB")
+    for operation in operations:
+        if operation.op == "delete":
+            setattr(row, operation.path, None)
+        elif operation.op == "update":
+            setattr(row, operation.path, operation.value)
+    session.add(row)
+    session.commit()
+    session.refresh(row)
+    json_compatible_item_data = jsonable_encoder(row)
+    return JSONResponse(status_code=status.HTTP_200_OK, content=json_compatible_item_data)
+
+@router.delete('/{id}', status_code= 204)
+async def remove_fun_fact(id: str, session: SessionDep):
+    row = session.get(FunFact, id)
+    if not row:
+        raise HTTPException(status_code=404, detail="Fun Fact Not Found on DB")
+    session.delete(row)
+    session.commit()
+    return {"ok": True}
